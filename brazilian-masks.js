@@ -1,31 +1,37 @@
 var masks = function() {
-  function applyCpfMask(value) {
+  function cpf(value) {
+    value = ensureThatIsAString(value);
     return value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
   }
 
   function cnpj(value) {
+    value = ensureThatIsAString(value);
     return value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
   }
 
   function cep(value) {
+    value = ensureThatIsAString(value);
     return value.replace(/(\d{5})(\d{3})/, '$1-$2');
   }
 
   function phone(value) {
+    value = ensureThatIsAString(value);
     return value.replace(/(\d\d)(\d{4})(\d{4})/, '($1) $2-$3');
   }
 
   function cellphone(value) {
+    value = ensureThatIsAString(value);
     return value.replace(/(\d\d)(\d{5})(\d{4})/, '($1) $2-$3');
   }
 
   function carplate(value) {
+    value = ensureThatIsAString(value);
     return value.replace(/([a-zA-Z]{3})(\d{4})/, '$1-$2');
   }
 
   function ensureThatIsAString(value) {
     if(value !== undefined) {
-      if (typeof myVar === 'string' || myVar instanceof String) {
+      if (typeof value === 'string' || value instanceof String) {
         return value;
       } else {
         return value.toString();
@@ -34,7 +40,7 @@ var masks = function() {
     return "";
   }
 
-  function  currency(value) {
+  function currency(value) {
     if(isNaN(value)) {
         value = 0;
     }
@@ -43,7 +49,25 @@ var masks = function() {
 
   return {
     cpf: function(value) {
-      return applyCpfMask(value);
-    }
+      return cpf(value);
+    },
+    cnpj: function(value) {
+      return cnpj(value);
+    },
+    cep: function(value) {
+      return cep(value);
+    },
+    phone: function(value) {
+      return phone(value);
+    },
+    cellphone: function(value) {
+      return cellphone(value);
+    },
+    carplate: function(value) {
+      return carplate(value);
+    },
+    currency: function(value) {
+      return currency(value);
+    },
   };
 }();
