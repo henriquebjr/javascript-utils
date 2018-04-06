@@ -23,6 +23,17 @@ var masks = function() {
     return value.replace(/([a-zA-Z]{3})(\d{4})/, '$1-$2');
   }
 
+  function ensureThatIsAString(value) {
+    if(value !== undefined) {
+      if (typeof myVar === 'string' || myVar instanceof String) {
+        return value;
+      } else {
+        return value.toString();
+      }
+    }
+    return "";
+  }
+
   function  currency(value) {
     if(isNaN(value)) {
         value = 0;
