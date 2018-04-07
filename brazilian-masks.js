@@ -40,6 +40,13 @@ var masks = function() {
     return "";
   }
 
+  function paddingLeft(min,  content) {
+    while(content.length < min) {
+      content = "0" + content;
+    }
+    return content;
+  }
+
   function currency(value) {
     if(isNaN(value)) {
         value = 0;
