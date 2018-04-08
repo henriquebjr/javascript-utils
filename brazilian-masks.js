@@ -1,16 +1,19 @@
 var masks = function() {
   function cpf(value) {
     value = ensureThatIsAString(value);
+    value = paddingLeft(11, value);
     return value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
   }
 
   function cnpj(value) {
     value = ensureThatIsAString(value);
+    value = paddingLeft(14, value);
     return value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
   }
 
   function cep(value) {
     value = ensureThatIsAString(value);
+    value = paddingLeft(8, value);
     return value.replace(/(\d{5})(\d{3})/, '$1-$2');
   }
 
@@ -41,6 +44,8 @@ var masks = function() {
   }
 
   function paddingLeft(min,  content) {
+    content = content.replace(/\D+/g, '');
+
     while(content.length < min) {
       content = "0" + content;
     }
