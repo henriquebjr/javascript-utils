@@ -28,3 +28,7 @@ if(isNaN(currencyValue)) {
     currencyValue = 0;
 }
 currencyValue =  Number(currencyValue).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+// ONLY NUMBERS
+var onlyNumbers = "a1b2c3";
+onlyNumbers = onlyNumbers.replace(/\D+/g, '');
